@@ -25,16 +25,7 @@ export async function POST(req: Request, { params }: { params: { storeId: string
       return new NextResponse("Store id URL dibutuhkan");
     }
 
-    // const storeByUserId = await db.store.findFirst({
-    //   where: {
-    //     id: params.storeId,
-    //     userId,
-    //   },
-    // });
 
-    // if (!storeByUserId) {
-    //   return new NextResponse("Unathorized", { status: 403 });
-    // }
 
     const category = await db.category.create({
       data: {
