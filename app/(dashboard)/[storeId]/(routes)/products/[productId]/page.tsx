@@ -1,21 +1,24 @@
 import db from "@/lib/db";
-import { BannerForm } from "./components/banner-form";
+import { ProductForm } from "./components/product-form";
 
-const BannerPage = async ({ params }: { params: { bannerId: string } }) => {
-  const banner = await db.banner.findUnique({
+const ProductPage = async ({ params }: { params: { productId: string } }) => {
+  const product = await db.product.findUnique({
     where: {
-      id: params.bannerId,
+      id: params.productId,
+    },
+    include: {
+      images: true,
     },
   });
   return (
     <>
       <div className="flex-col">
         <div className="flex-1 space-y-4 p-8 pt-6">
-          <BannerForm initialData={banner}  />
+          <ProductForm initialData={product}  />
         </div>
       </div>
     </>
   );
 };
 
-export default BannerPage;
+export default ProductPage;
