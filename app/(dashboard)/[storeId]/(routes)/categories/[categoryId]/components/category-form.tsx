@@ -43,7 +43,10 @@ const formSchema = z.object({
 
 type CategoryFormValues = z.infer<typeof formSchema>;
 
-export const CategoryForm: React.FC<CategoryFormProps> = ({ initialData, banners }) => {
+export const CategoryForm: React.FC<CategoryFormProps> = ({
+  initialData,
+  banners,
+}) => {
   const params = useParams();
   const router = useRouter();
   const origin = useOrigin();
@@ -53,7 +56,9 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({ initialData, banners
 
   const title = initialData ? "Edit Category" : "Buat Category";
   const description = initialData ? "Edit Category Toko" : "Buat Category Toko";
-  const toastMessage = initialData ? "Category berhasil di Edit" : "Category berhasil di buat";
+  const toastMessage = initialData
+    ? "Category berhasil di Edit"
+    : "Category berhasil di buat";
   const action = initialData ? "Simpan Category" : "buat Category";
 
   const form = useForm<CategoryFormValues>({
@@ -68,7 +73,10 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({ initialData, banners
     try {
       setLoading(true);
       if (initialData) {
-        await axios.patch(`/api/${params.storeId}/categories/${params.categoryId}`, data);
+        await axios.patch(
+          `/api/${params.storeId}/categories/${params.categoryId}`,
+          data
+        );
       } else {
         await axios.post(`/api/${params.storeId}/categories`, data);
       }
@@ -85,7 +93,9 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({ initialData, banners
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/categories/${[params.categoryId]}`);
+      await axios.delete(
+        `/api/${params.storeId}/categories/${[params.categoryId]}`
+      );
       router.refresh();
       router.push(`/${params.storeId}/categories`);
       toast.success(" category berhasil di Hapus");
@@ -108,7 +118,11 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({ initialData, banners
       <div className="flex items-center justify-between">
         <Heading title={title} description={description} />
         {initialData && (
-          <Button disabled={loading} variant="destructive" size="sm" onClick={() => setOpen(true)}>
+          <Button
+            disabled={loading}
+            variant="destructive"
+            size="sm"
+            onClick={() => setOpen(true)}>
             <Trash className="h-4 w-4" />
           </Button>
         )}
@@ -117,7 +131,9 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({ initialData, banners
       <Separator />
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 w-full">
           <div className="grid grid-cols-3 gap-8">
             <FormField
               control={form.control}
@@ -126,7 +142,11 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({ initialData, banners
                 <FormItem>
                   <FormLabel>Nama</FormLabel>
                   <FormControl>
-                    <Input placeholder="Nama Category" disabled={loading} {...field} />
+                    <Input
+                      placeholder="Nama Category"
+                      disabled={loading}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -147,7 +167,10 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({ initialData, banners
                       defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue defaultValue={field.value} placeholder="Pilih Banner" />
+                          <SelectValue
+                            defaultValue={field.value}
+                            placeholder="Pilih Banner"
+                          />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
