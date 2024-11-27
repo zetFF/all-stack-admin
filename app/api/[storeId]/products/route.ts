@@ -20,7 +20,7 @@ export async function POST(
       return new NextResponse("Nama Perlu di Input", { status: 400 });
     }
 
-    if (!images || !images.length) {
+    if (!images || images.length) {
       return new NextResponse("Image Perlu di Input", { status: 400 });
     }
 
@@ -36,16 +36,16 @@ export async function POST(
       return new NextResponse("Store id URL dibutuhkan");
     }
 
-    const storeByUserId = await db.store.findFirst({
-      where: {
-        id: params.storeId,
-        userId,
-      },
-    });
+    // const storeByUserId = await db.store.findFirst({
+    //   where: {
+    //     id: params.storeId,
+    //     userId,
+    //   },
+    // });
 
-    if (!storeByUserId) {
-      return new NextResponse("Unathorized", { status: 403 });
-    }
+    // if (!storeByUserId) {
+    //   return new NextResponse("Unathorized", { status: 403 });
+    // }
 
     const product = await db.product.create({
       data: {

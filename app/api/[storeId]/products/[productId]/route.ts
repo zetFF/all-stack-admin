@@ -62,16 +62,16 @@ export async function PATCH(
       return new NextResponse("product Id Dibutuhkan", { status: 400 });
     }
 
-    const storeByUserId = await db.store.findFirst({
-      where: {
-        id: params.storeId,
-        userId,
-      },
-    });
+    // const storeByUserId = await db.store.findFirst({
+    //   where: {
+    //     id: params.storeId,
+    //     userId,
+    //   },
+    // });
 
-    if (!storeByUserId) {
-      return new NextResponse("Unathorized", { status: 403 });
-    }
+    // if (!storeByUserId) {
+    //   return new NextResponse("Unathorized", { status: 403 });
+    // }
 
     await db.product.update({
       where: {

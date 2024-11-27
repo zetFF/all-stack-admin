@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { BannerColumn } from "./columns";
+import { ProductColumn } from "./columns";
 import { Button } from "@/components/ui/button";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
@@ -17,7 +17,7 @@ import axios from "axios";
 import { AlertModal } from "@/components/modal/alert-modal";
 
 interface CellActionProps {
-  data: BannerColumn;
+  data: ProductColumn;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
@@ -28,16 +28,16 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
 
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success("Banner id Berhasil di copy");
+    toast.success("product id Berhasil di copy");
   };
 
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/banners/${[data.id]}`);
+      await axios.delete(`/api/${params.storeId}/products/${[data.id]}`);
       router.refresh();
-      router.push(`/${params.storeId}/banners`);
-      toast.success(" Banner di Hapus");
+      router.push(`/${params.storeId}/products`);
+      toast.success(" product di Hapus");
     } catch (error) {
       toast.error("check kembali datanya");
     } finally {
@@ -67,7 +67,10 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
             <Copy className="mr-2 h-4 w-4" />
             Copy Id
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/banners/${data.id}`)}>
+          <DropdownMenuItem
+            onClick={() =>
+              router.push(`/${params.storeId}/products/${data.id}`)
+            }>
             <Edit className="mr-2 h-4 w-4" />
             Update
           </DropdownMenuItem>

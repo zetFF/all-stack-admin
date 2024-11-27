@@ -15,11 +15,11 @@ export type CategoryColumn = {
 export const columns: ColumnDef<CategoryColumn>[] = [
   {
     accessorKey: "name",
-    header: "name",
+    header: "Name",
   },
   {
     accessorKey: "banner",
-    header: "banner",
+    header: "Banner",
     cell: ({ row }) => row.original.bannerLabel,
   },
   {
