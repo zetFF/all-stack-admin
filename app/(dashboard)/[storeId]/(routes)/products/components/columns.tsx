@@ -2,6 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { CellAction } from "./cell-action";
+import { Decimal } from "@prisma/client/runtime/library";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.

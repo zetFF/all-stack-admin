@@ -37,7 +37,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
       await axios.delete(`/api/${params.storeId}/products/${[data.id]}`);
       router.refresh();
       router.push(`/${params.storeId}/products`);
-      toast.success(" product di Hapus");
+      toast.success(" product berhasil di Hapus");
     } catch (error) {
       toast.error("check kembali datanya");
     } finally {

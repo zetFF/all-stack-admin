@@ -28,7 +28,9 @@ export default function RootLayout({
           <ModalProvider />
           <main>
             <SignedOut>
-              <SignIn routing="hash" />
+              <div className="flex justify-center items-center">
+                <SignIn routing="hash" />
+              </div>
             </SignedOut>
             <SignedIn>{children}</SignedIn>
           </main>
