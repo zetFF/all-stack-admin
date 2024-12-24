@@ -1,5 +1,3 @@
-
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -48,7 +46,6 @@ model Category {
   @@index([bannerId])
 }
 
-
 model Product {
   id          String @id @default(uuid())
   storeId     String
@@ -66,7 +63,6 @@ model Product {
   @@index([storeId])
   @@index([categoryId])
 }
-
 
 model Image {
   id        String @unique @default(uuid())

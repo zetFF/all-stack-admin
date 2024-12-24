@@ -29,7 +29,9 @@ export default function RootLayout({
           <main>
             <SignedOut>
               <div className="flex justify-center items-center">
-                <SignIn routing="hash" />
+                <div className="flex justify-center items-center mt-20">
+                  <SignIn routing="hash" />
+                </div>
               </div>
             </SignedOut>
             <SignedIn>{children}</SignedIn>
