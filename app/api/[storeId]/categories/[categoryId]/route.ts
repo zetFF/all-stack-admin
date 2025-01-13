@@ -2,7 +2,8 @@ import db from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request, { params }: { params: { categoryId: string } }) {
+export async function GET(req: Request, props: { params: Promise<{ categoryId: string }> }) {
+  const params = await props.params;
   try {
     if (!params.categoryId) {
       return new NextResponse("categoryId Dibutuhkan", { status: 400 });
@@ -21,7 +22,11 @@ export async function GET(req: Request, { params }: { params: { categoryId: stri
   }
 }
 
-export async function PATCH(req: Request, { params }: { params: { storeId: string; categoryId: string } }) {
+export async function PATCH(
+  req: Request,
+  props: { params: Promise<{ storeId: string; categoryId: string }> }
+) {
+  const params = await props.params;
   try {
     const { userId } = await auth();
     const body = await req.json();
@@ -72,7 +77,11 @@ export async function PATCH(req: Request, { params }: { params: { storeId: strin
   }
 }
 
-export async function DELETE(req: Request, { params }: { params: { storeId: string; categoryId: string } }) {
+export async function DELETE(
+  req: Request,
+  props: { params: Promise<{ storeId: string; categoryId: string }> }
+) {
+  const params = await props.params;
   try {
     const { userId } = await auth();
 

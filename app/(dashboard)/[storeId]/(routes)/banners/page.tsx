@@ -3,11 +3,12 @@ import { BannerClient } from "./components/client";
 import { BannerColumn } from "./components/columns";
 import {format} from 'date-fns'
 
-const BannersPage = async ({
-  params
-}: {
-  params: {storeId: string}
-}) => {
+const BannersPage = async (
+  props: {
+    params: Promise<{storeId: string}>
+  }
+) => {
+  const params = await props.params;
 
   const banners  = await db.banner.findMany({
     where: {
@@ -18,11 +19,11 @@ const BannersPage = async ({
     }
   })
 
-const formattedBanners:BannerColumn[] = banners.map((item) => ({
-  id: item.id,
-  label: item.label,
-  createdAt: format(item.createdAt, "MMM do, yyyy")
-}))
+  const formattedBanners:BannerColumn[] = banners.map((item) => ({
+    id: item.id,
+    label: item.label,
+    createdAt: format(item.createdAt, "MMM do, yyyy")
+  }))
 
   return (
     <>
